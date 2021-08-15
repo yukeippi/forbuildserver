@@ -21,5 +21,11 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  database: forbuildserver_production
+  username: root
+  password: <%= Rails.application.credentials.db[:password] %>
+  # socket: /var/run/mysqld/mysqld.sock
+  socket: /var/lib/mysql/mysql.sock # Amazon Linux
